@@ -2,6 +2,9 @@ package vendingmachine.domain;
 
 import java.util.Objects;
 
+/**
+ * 금액.
+ */
 public class Price {
     private static final int MINIMUM_PRICE_VALUE = 100;
     private int value;
@@ -11,6 +14,10 @@ public class Price {
             throw new IllegalArgumentException(MINIMUM_PRICE_VALUE + "보다 커야합니다");
         }
         this.value = value;
+    }
+
+    public Price addPrice(int value) {
+        return new Price(this.value + value);
     }
 
     public int getValue() {
