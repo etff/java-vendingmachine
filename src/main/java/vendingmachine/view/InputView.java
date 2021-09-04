@@ -9,7 +9,6 @@ import java.util.Scanner;
 
 public class InputView {
     private static final String BLANK = "";
-    private static Scanner scanner = new Scanner(System.in);
 
     private InputView() {
     }
@@ -17,7 +16,7 @@ public class InputView {
     public static int askVendingMachineRemains() {
         System.out.println("자판기가 보유하고 있는 금액을 입력해 주세요.");
         try {
-            return Integer.parseInt(scanner.nextLine());
+            return Integer.parseInt(new Scanner(System.in).nextLine());
         } catch (Exception e) {
             System.out.println(e.getMessage());
             askVendingMachineRemains();
@@ -28,7 +27,7 @@ public class InputView {
     public static List<Item> askVendingMachineItems() {
         System.out.println("상품명과 수량, 금액을 입력해 주세요.");
         try {
-            String inputs = scanner.nextLine();
+            String inputs = new Scanner(System.in).nextLine();
             return ItemGenerator.generateItem(inputs);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -40,7 +39,7 @@ public class InputView {
     public static int askUserMoney() {
         System.out.println("투입 금액을 입력해주세요.");
         try {
-            return Integer.parseInt(scanner.nextLine());
+            return Integer.parseInt(new Scanner(System.in).nextLine());
         } catch (Exception e) {
             System.out.println(e.getMessage());
             askUserMoney();
@@ -51,7 +50,7 @@ public class InputView {
     public static String askItemBuy() {
         System.out.println("구매할 상품명을 입력해 주세요.");
         try {
-            return scanner.nextLine();
+            return new Scanner(System.in).nextLine();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             askItemBuy();
