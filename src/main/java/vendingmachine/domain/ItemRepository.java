@@ -3,6 +3,7 @@ package vendingmachine.domain;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -30,5 +31,21 @@ public class ItemRepository {
         return items.entrySet().stream()
                 .map(Map.Entry::getValue)
                 .collect(Collectors.toList());
+    }
+
+    public int findMinmiumPriceItem() {
+        return items.entrySet().stream()
+                .map(Map.Entry::getValue)
+                .map(Item::getPrice)
+                .mapToInt(Price::getValue)
+                .min()
+                .orElseThrow(() -> new NoSuchElementException());
+    }
+
+    public boolean findItemsSoldOut() {
+        return items.entrySet().stream()
+                .map(Map.Entry::getValue)
+                .map(Item::getQuantity)
+                .allMatch(v -> v.getValue() == 0);
     }
 }
