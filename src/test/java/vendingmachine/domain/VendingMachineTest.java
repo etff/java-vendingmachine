@@ -1,6 +1,7 @@
 package vendingmachine.domain;
 
 import org.junit.jupiter.api.Test;
+import vendingmachine.application.VendingMachine;
 
 import java.util.List;
 

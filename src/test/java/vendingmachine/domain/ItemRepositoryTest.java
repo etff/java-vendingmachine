@@ -35,4 +35,14 @@ class ItemRepositoryTest {
                 .orElseThrow(IllegalArgumentException::new);
         assertThat(findItem.getQuantity()).isEqualTo(new Quantity(19));
     }
+
+    @Test
+    void findItemsSoldOut() {
+        final Item item1 = new Item("콜라", 0, 100);
+        final Item item2 = new Item("사이다", 0, 100);
+        itemRepository.addItem(item1);
+        itemRepository.addItem(item2);
+
+        assertThat(itemRepository.findItemsSoldOut()).isTrue();
+    }
 }
