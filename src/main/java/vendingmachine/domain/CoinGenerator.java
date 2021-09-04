@@ -2,15 +2,13 @@ package vendingmachine.domain;
 
 import com.woowahan.techcourse.utils.Randoms;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class CoinGenerator {
-    public static final int COIN_10 = 10;
-    public static final int COIN_100 = 100;
-    public static final int COIN_500 = 500;
-    private Map<Integer, Integer> coins = new HashMap<>();
+    private Map<Integer, Integer> coins;
 
     public CoinGenerator(int remainAmount) {
         this.coins = generateCoins(remainAmount);
@@ -29,12 +27,18 @@ public class CoinGenerator {
     }
 
     private int pickCoins(int remainAmount) {
-        int pick = Randoms.pick(List.of(COIN_10, COIN_100, COIN_500));
+        int pick = Randoms.pick(getCoinEntries());
         int subtractedAmount = remainAmount - pick;
         if (subtractedAmount >= 0) {
-            coins.put(pick, coins.getOrDefault(pick, 0) + 1);
+            this.coins.put(pick, this.coins.getOrDefault(pick, 0) + 1);
             return subtractedAmount;
         }
         return remainAmount;
+    }
+
+    private List<Integer> getCoinEntries() {
+        return Stream.of(Coin.values())
+                .map(Coin::getValue)
+                .collect(Collectors.toList());
     }
 }
