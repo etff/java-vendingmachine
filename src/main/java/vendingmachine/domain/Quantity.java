@@ -2,6 +2,9 @@ package vendingmachine.domain;
 
 import java.util.Objects;
 
+/**
+ * 수량.
+ */
 public class Quantity {
     private static final String MINIMUM_QUANTITY_REQUIRED = "수량은 0보다 커야합니다.";
     private final int value;
@@ -15,6 +18,14 @@ public class Quantity {
 
     public int getValue() {
         return value;
+    }
+
+    public Quantity add(int value) {
+        return new Quantity(this.value + value);
+    }
+
+    public Quantity subtract(int value) {
+        return new Quantity(this.value - value);
     }
 
     @Override

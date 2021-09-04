@@ -14,7 +14,6 @@ class CoinChangerTest {
         Map<Integer, Integer> map = new HashMap<>();
         map.put(50, 1);
         map.put(100, 4);
-
         int remains = 500;
 
         CoinChanger coinChanger = new CoinChanger(map, remains);
