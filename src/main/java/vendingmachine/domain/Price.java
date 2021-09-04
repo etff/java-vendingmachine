@@ -33,6 +33,10 @@ public class Price {
         return value;
     }
 
+    public boolean canBuy(int value) {
+        return this.value < value;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

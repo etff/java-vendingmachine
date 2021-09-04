@@ -2,6 +2,9 @@ package vendingmachine.domain;
 
 import java.util.Objects;
 
+/**
+ * 상품의 이름.
+ */
 public class Name {
     private static final String NAME_BLANK_NOT_ALLOW = "상품명은 공백이 되어서는 안됩니다.";
     private String value;

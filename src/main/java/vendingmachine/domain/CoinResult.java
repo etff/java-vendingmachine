@@ -4,8 +4,11 @@ import java.util.Collections;
 import java.util.Map;
 
 public class CoinResult {
-    private final Map<Integer, Integer> result;
-    private final int remains;
+    private Map<Integer, Integer> result;
+    private int remains;
+
+    public CoinResult() {
+    }
 
     public CoinResult(Map<Integer, Integer> result, int remains) {
         this.result = result;

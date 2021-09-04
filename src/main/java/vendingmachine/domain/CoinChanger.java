@@ -17,18 +17,26 @@ public class CoinChanger {
     }
 
     public CoinResult getResult() {
-        Map<Integer, Integer> newMap = new TreeMap<>(Collections.reverseOrder());
-        newMap.putAll(map);
-
-        for (Map.Entry<Integer, Integer> coin : newMap.entrySet()) {
-            for (int i = 0; i < coin.getValue(); i++) {
-                int subract = remains - coin.getKey();
-                if (subract > 0) {
-                    result.put(coin.getKey(), result.getOrDefault(coin.getKey(), 0) + 1);
-                    remains = subract;
-                }
-            }
+        Map<Integer, Integer> sortedMap = sortCoin();
+        for (Map.Entry<Integer, Integer> coin : sortedMap.entrySet()) {
+            subtractRemain(coin);
         }
         return new CoinResult(result, remains);
+    }
+
+    private void subtractRemain(Map.Entry<Integer, Integer> coin) {
+        for (int i = 0; i < coin.getValue(); i++) {
+            int subtract = remains - coin.getKey();
+            if (subtract >= 0) {
+                result.put(coin.getKey(), result.getOrDefault(coin.getKey(), 0) + 1);
+                remains = subtract;
+            }
+        }
+    }
+
+    private Map<Integer, Integer> sortCoin() {
+        Map<Integer, Integer> sortedMap = new TreeMap<>(Collections.reverseOrder());
+        sortedMap.putAll(map);
+        return sortedMap;
     }
 }
