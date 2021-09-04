@@ -33,18 +33,16 @@ public class ItemRepository {
                 .collect(Collectors.toList());
     }
 
-    public int findMinmiumPriceItem() {
-        return items.entrySet().stream()
-                .map(Map.Entry::getValue)
+    public int findMinimumPrice() {
+        return items.values().stream()
                 .map(Item::getPrice)
                 .mapToInt(Price::getValue)
                 .min()
-                .orElseThrow(() -> new NoSuchElementException());
+                .orElseThrow(NoSuchElementException::new);
     }
 
     public boolean findItemsSoldOut() {
-        return items.entrySet().stream()
-                .map(Map.Entry::getValue)
+        return items.values().stream()
                 .map(Item::getQuantity)
                 .allMatch(v -> v.getValue() == 0);
     }

@@ -68,7 +68,7 @@ public class VendingMachine {
     }
 
     private boolean isNotEnoughMoney() {
-        return itemRepository.findMinmiumPriceItem() > this.remainUserMoney;
+        return itemRepository.findMinimumPrice() > this.remainUserMoney;
     }
 
     public List<Item> getItems() {

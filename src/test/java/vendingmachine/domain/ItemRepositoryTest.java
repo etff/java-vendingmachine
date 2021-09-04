@@ -45,4 +45,16 @@ class ItemRepositoryTest {
 
         assertThat(itemRepository.findItemsSoldOut()).isTrue();
     }
+
+    @Test
+    void findMinimumPrice() {
+        final Item item1 = new Item("콜라", 0, 1000);
+        final Item item2 = new Item("사이다", 0, 500);
+        itemRepository.addItem(item1);
+        itemRepository.addItem(item2);
+
+        int actual = itemRepository.findMinimumPrice();
+
+        assertThat(actual).isEqualTo(500);
+    }
 }
